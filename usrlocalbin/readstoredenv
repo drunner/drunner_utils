@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PATH=/env
+
+[ -e "$PATH" ] || exit 127
+
+[ "$(/bin/ls -A $PATH)" ] || exit 127
+
+for file in ${PATH}/*
+do
+	filename=${file##*/}
+	content=$( < "$file" )
+	echo "${filename}=${content}"
+done
+
+exit 0
