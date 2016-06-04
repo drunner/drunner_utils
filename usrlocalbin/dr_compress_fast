@@ -1,0 +1,26 @@
+#!/bin/bash
+set -o nounset
+
+# die MESSAGE
+function die {
+   if [ -n "$1" ]; then
+      echo "$1" <&2
+   else
+      echo "Unexpected error. Exiting."<&2
+   fi
+   exit 1
+}
+
+#------------------------------------------------------------------------------------
+# PASS=? dr_compress ARCHIVENAME
+
+[ "$#" -eq 1 ] || die "dr_compress_fast ARCHIVENAME"
+
+SOURCEFOLDER="/src"
+ARCHIVEPATH="/dst/$1"
+
+if [ -e "$ARCHIVEPATH" ]; then die "Archive $1 already exists. Aborting." ; fi
+if [ ! -d "$SOURCEFOLDER" ]; then die "dr_compress_fast: Source folder does not exist: $SOURCEFOLDER"; fi
+
+tar -cpf "$ARCHIVEPATH" -C "$SOURCEFOLDER" . >/dev/null 2>&1
+[ $? -eq 0 ] || die "Failed to create archive."
