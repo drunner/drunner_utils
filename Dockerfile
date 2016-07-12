@@ -1,4 +1,4 @@
-# rootutils, a container to help dRunner do its thing.
+# drunner_utils, a container to help dRunner do its thing.
 
 FROM debian
 MAINTAINER j842
