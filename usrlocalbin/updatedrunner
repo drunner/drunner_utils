@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# die MESSAGE
+function die {
+   [ -n "$1" ] || { echo "Unexpected error. Exiting."<&2 ; exit 1 ; }
+
+   echo "$1" <&2
+   exit 1
+}
+
+target="/ulb/drunner"
+
+rm "${target}" || die "Could not remove old drunner executable.";
+
+wget -nv https://drunner.s3.amazonaws.com/lin/drunner
+cp drunner "${target}"
