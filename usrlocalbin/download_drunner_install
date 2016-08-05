@@ -8,7 +8,7 @@ function die {
    exit 1
 }
 
-fname = "drunner-install"
+fname="drunner-install"
 target="/dtemp/${fname}"
 
 rm -f "${target}"
