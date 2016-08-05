@@ -10,7 +10,8 @@ function die {
 
 target="/ulb/drunner"
 
-rm "${target}" || die "Could not remove old drunner executable.";
+rm -f "${target}"
+[ ! -f ${target} ] || die "Could not remove old drunner executable."
 
 wget -nv https://drunner.s3.amazonaws.com/lin/drunner
 chmod 0755 drunner
