@@ -8,11 +8,12 @@ function die {
    exit 1
 }
 
-target="/ulb/drunner"
+fname = "drunner-install"
+target="/dtemp/${fname}"
 
 rm -f "${target}"
 [ ! -f ${target} ] || die "Could not remove old drunner executable."
 
-wget -nv https://drunner.s3.amazonaws.com/lin/drunner
-chmod 0755 drunner
-cp drunner "${target}"
+wget -nv "https://drunner.s3.amazonaws.com/lin/${fname}"
+chmod 0755 "${fname}"
+cp "${fname}" "${target}"
