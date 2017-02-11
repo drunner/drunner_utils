@@ -4,7 +4,7 @@ FROM debian
 MAINTAINER j842
 
 RUN apt-get update && \
-    apt-get install -y p7zip-full gnupg wget curl openssl nano && \
+    apt-get install -y p7zip-full gnupg wget curl openssl nano git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
